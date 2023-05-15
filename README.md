@@ -46,24 +46,25 @@ Code Flow:
 Hence, This is the desired actions of fetching content, calculating word frequency, displaying a histogram, and enabling CSV export based on user interactions.
 
 
-# Code Output after removing the error
+# Code Output on load
 
-![AFTER ERROR FIXING](https://user-images.githubusercontent.com/97901522/233856290-2670eb71-f586-4edc-a8fc-96707a0afd62.png)
-
-
-
-# Code Optimization
-
-#### Before Optimization of code the WrappedSingleListItem renders multiple times when we click on the list item
-
-![BEFORE OPTIMIZATION](https://user-images.githubusercontent.com/97901522/233856355-bf4ca13a-9ec7-4858-82b3-7fdbcaa698ea.png)
+![one](https://github.com/SupritiVats/Terribly_Tiny_Tales_Assignment/assets/97901522/77e9c597-fb50-4b5f-996e-3e5bef85f373)
 
 
+# Code Output on clicking on submit button
+#### It displays the histogram depicting words count and the words.
 
-#### After Optimization of code the WrappedSingleListItem renders only 2 times when we click on the list item
-
-![AFTER OPTMIZATION](https://user-images.githubusercontent.com/97901522/233856470-4b5e0420-8b48-407f-9288-2b6bfbdc0263.png)
+![two](https://github.com/SupritiVats/Terribly_Tiny_Tales_Assignment/assets/97901522/49657030-58e3-45fc-ad65-63235309e0e8)
 
 
+# Code Output on clicking on export button  
+#### It gets all top 20 most frequently occurred words.
+
+![three one](https://github.com/SupritiVats/Terribly_Tiny_Tales_Assignment/assets/97901522/ba9035e0-c1ed-494d-918d-6764fde455f7)
+
+
+# Data.csv File Output 
+
+![three](https://github.com/SupritiVats/Terribly_Tiny_Tales_Assignment/assets/97901522/c14d8d3c-bf61-4245-bf1a-489031d11bb3)
 
 
