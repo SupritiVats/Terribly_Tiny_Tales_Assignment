@@ -25,16 +25,19 @@ https://terribly-tiny-tales-supriti-vats.netlify.app/
 
 ## EXPLAINATION OF THE ASSIGNMENT:
 ### Imported: 
-The React, useState and useEffect are imported from the React library
+The React, useState and useEffect are imported from the React library.
+
 chart.js/auto from Chart.js library, which is used for creating charts and graphs.
+
 papaparse is used for parsing and generating CSV files.
 
-### Commands to install chart.js:
+
+### Command to install chart.js:
 ```
  npm install chart.js 
 ```
 
-### Commands to install papaparse:
+### Command to install papaparse:
 ```
  npm install papaparse 
 ```
