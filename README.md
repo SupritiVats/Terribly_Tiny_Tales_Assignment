@@ -2,6 +2,7 @@
 
 #### Supriti Vats | 12007319 | supritivats123@gmail.com |
 
+
 ## Task:
 Develop a frontend in Reactjs or Nextjs, which does the following:
 
@@ -16,6 +17,7 @@ Develop a frontend in Reactjs or Nextjs, which does the following:
 5. Also build an "Export" button, which when clicked will download a CSV file of the histogram data.
 
 X-axis = top 20 words with highest occurrence Y-axis = how many times they occurred in the file
+
 
 ## Link of Deployement:
 ```
