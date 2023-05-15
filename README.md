@@ -5,11 +5,15 @@
 ## Task:
 Develop a frontend in Reactjs or Nextjs, which does the following:
 
-1.On first load, only has a Submit button.
-2.On clicking on Submit, it will fetch the contents of https://www.terriblytinytales.com/test.txt.
-3.Parse the content and find the frequency of occurrence of each word (some words will occur only once, some twice and so on, and some will occur N times).
-4.Then on the frontend, plot a histogram of the 20 most occurring words.
-5.Also build an "Export" button, which when clicked will download a CSV file of the histogram data.
+1. On first load, only has a Submit button.
+
+2. On clicking on Submit, it will fetch the contents of https://www.terriblytinytales.com/test.txt.
+
+3. Parse the content and find the frequency of occurrence of each word (some words will occur only once, some twice and so on, and some will occur N times).
+
+4. Then on the frontend, plot a histogram of the 20 most occurring words.
+
+5. Also build an "Export" button, which when clicked will download a CSV file of the histogram data.
 
 X-axis = top 20 words with highest occurrence Y-axis = how many times they occurred in the file
 
@@ -19,155 +23,29 @@ https://terribly-tiny-tales-supriti-vats.netlify.app/
 
 ```
 
-## EXPLAINATION OF THE LIST COMPONENT:
-The React, useState, useEffect, memo, and useCallback are imported from the React library, and PropTypes is imported from the prop-types package.
+## EXPLAINATION OF THE ASSIGNMENT:
+### Imported: 
+The React, useState and useEffect are imported from the React library
+chart.js/auto from Chart.js library, which is used for creating charts and graphs.
+papaparse is used for parsing and generating CSV files.
 
-The WrappedSingleListItem component is defined, which is responsible for rendering a single item in the list. It receives four props: index, isSelected, onClickHandler, and text. It renders an li element with a background color based on whether the item is selected or not. It also invokes the onClickHandler prop when clicked, passing in the item's index.
+Code Flow: 
+1. On first load, the interface only displays a "Submit" button.
+2. When the "Submit" button is clicked, it triggers the `doSubmit` function.
+3. Inside `doSubmit`, an HTTP request is made to fetch the contents of the URL `https://www.terriblytinytales.com/test.txt` using fetch function.
+4. The fetched content is then parsed into individual words using the regular expression `/\W+/`, which splits the content based on non-word characters (e.g., punctuation, spaces).
+5. The code calculates the frequency of occurrence for each word by iterating over the words and updating the `wordCount` object.
+6. The `MostOccured` variable is created by sorting the `wordCount` object based on the frequency of occurrence and selecting the top 20 words.
+7. The `MostOccured` data is set to the `MostWords` state variable using the `setMostWords` function.
+8. The fetching state is toggled by setting `Fetching` to `true` and then back to `false` after fetching and processing the data.
+9. The histogram is rendered on the frontend using Chart.js. The X-axis represents the top 20 words with the highest occurrence, and the Y-axis represents the frequency of occurrence.
+10. An "Export" button is included, and when clicked, it triggers the `doExport` function.
+11. Inside `doExport`, the `MostWords` data is converted to a CSV format using PapaParse.
+12. The CSV data is then downloaded as a file named "data.csv" using the HTML5 `Blob` and `URL.createObjectURL` APIs.
 
-The SingleListItem component is a memoized version of the WrappedSingleListItem component, which means it will only re-render if its props change.
-
-The WrappedListComponent component is defined, which is responsible for rendering the entire list. It receives one prop: items, an array of objects, each representing an item in the list. It initializes a state variable selectedIndex using the useState hook, which represents the currently selected item's index.
-
-The handleClick function is defined using the useCallback hook, which updates the selectedIndex state variable when an item is clicked.
-
-The WrappedListComponent component renders an unordered list (ul) with each item in the items array rendered as a SingleListItem component. It passes in the necessary props to each SingleListItem component, including the isSelected prop, which is determined based on whether the item's index matches the selectedIndex.
-
-The WrappedListComponent component is memoized using the memo function, which means it will only re-render if its props change.
-
-Finally, the List component is defined as a memoized version of the WrappedListComponent component, which will only re-render if its props change. The List component is then exported as the default export of the module.
-
-
-## Total 6 Errors Found and Performed Optimization too
-
-
-### Error 1
-
-In the WrappedListComponent component, useState was used incorrectly and initial value given [] after correction. [setSelectedIndex,selectedIndex] changes to [selectedIndex, setSelectedIndex] As during destructuring the the current state resides first and then a function that updates the state.
-
-incorrect one:
-
-```
-const [setSelectedIndex,selectedIndex] = useState();
-
-```
+Hence, This is the desired actions of fetching content, calculating word frequency, displaying a histogram, and enabling CSV export based on user interactions.
 
 
-correct should be:
-
-```
-const [selectedIndex, setSelectedIndex] = useState([]);
-```
-
-### Error 2
-In the WrappedListComponent component, defaultProps for items should not be null. It should be:
-
-incorrect:
-
-```
-items:null
-```
-
-correct: 
-
- ```
-items: [                    
-    {
-      id: 1,
-      text: "MY NAME IS",
-    },
-    {
-      id: 2,
-      text: "SUPRITI VATS",
-    },
-    {
-      id: 3,
-      text: "ANS I AM EXCITED TO JOIN YOUR ESTEEMED ORGANIZATION",
-    },
-    {
-      id: 4,
-      text: "STEELEYE",
-    },
-  ]
- ```
-
-
-### Error 3
-
-In the SingleListItem component, the isSelected prop is currently receiving the state variable selectedIndex, which is an object generated by invoking the useState hook. However, the isSelected prop ought to hold a boolean value that indicates whether the item is selected or not. 
-
-incorrect:
-
-```
-isSelected={selectedIndex}
-```
-
-Therefore, it should be changed to:
-
-```
-isSelected={selectedIndex === index}
-```
-
-### Error 4
-
-In the WrappedSingleListItem component, onClickHandler is being called with an argument (index). onClickHandler(index) changes to ()=>onClickHandler(index) because  to create a new function that will be executed later when the user clicks on the element, which will then invoke the onClickHandler function with the appropriate index argument.
-
-incorrect one:
-
-```
-onClick={onClickHandler(index)}
-
-```
-
-correct one:
-
-```
-onClick={()=>onClickHandler(index)}
-```
-
-
-### Error 5
-
-In the WrappedListComponent component, the propTypes for items is incorrectly defined. It sholud be arrayOf instead of array and shape instead of shapeOf
-
-Incorrect:
-
-```
-WrappedListComponent.propTypes = {
-  items: PropTypes.array(PropTypes.shapeOf({
-    text: PropTypes.string.isRequired,
-  })),
-};
-```
-
-
-correct:
-
-```
-WrappedListComponent.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      // ERROR  : Removing shapeOf to shape and array to arrayOf
-      text: PropTypes.string,
-    })
-  ),
-};
-```
-
-
-
-### Error 6
-
-Removing useEffect for no use
-
-```
-useEffect(() => {
-    setSelectedIndex(null);
-}, []);
-```
-
-We can remove the above code.
-
- 
 # Code Output after removing the error
 
 ![AFTER ERROR FIXING](https://user-images.githubusercontent.com/97901522/233856290-2670eb71-f586-4edc-a8fc-96707a0afd62.png)
