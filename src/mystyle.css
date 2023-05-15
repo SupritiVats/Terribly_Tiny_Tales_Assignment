@@ -12,7 +12,7 @@ body {
   }
   
   .introduction{
-    margin-top: 16px;
+    margin-top: 10px;
      display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,11 +22,6 @@ body {
     font-family: 'Times New Roman';
   }
 
-  form {
-    
-    margin-bottom: 18px;
-  }
-  
   button {
     margin-top: 18px; 
     padding: 12px 22px;
@@ -48,8 +43,9 @@ body {
   
   
   .export-button {
-    margin-left: 660px;
-    margin-top: 18px; 
+    position:absolute;
+    margin-left: 727px;
+    margin-top: 30px; 
     padding: 12px 22px;
     font-size: 15px;
     background-color: #0d8ed9;
