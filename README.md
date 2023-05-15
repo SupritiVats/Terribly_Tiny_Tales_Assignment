@@ -1,6 +1,23 @@
-# Supriti-Vats_Front-End
+# Terribly_Tiny_Tales_Assignment
 
 #### Supriti Vats | 12007319 | supritivats123@gmail.com |
+
+## Task:
+Develop a frontend in Reactjs or Nextjs, which does the following:
+
+1.On first load, only has a Submit button
+2.On clicking on Submit, it will fetch the contents of https://www.terriblytinytales.com/test.txt
+3.Parse the content and find the frequency of occurrence of each word (some words will occur only once, some twice and so on, and some will occur N times)
+4.Then on the frontend, plot a histogram of the 20 most occurring words.
+5.Also build an "Export" button, which when clicked will download a CSV file of the histogram data.
+
+X-axis = top 20 words with highest occurrence Y-axis = how many times they occurred in the file
+
+## Link of Deployement:
+```
+https://terribly-tiny-tales-supriti-vats.netlify.app/
+
+```
 
 ## EXPLAINATION OF THE LIST COMPONENT:
 The React, useState, useEffect, memo, and useCallback are imported from the React library, and PropTypes is imported from the prop-types package.
