@@ -1,0 +1,2 @@
+# Terribly_Tiny_Assignment
+ On first load, only has a Submit button On clicking on Submit, it will fetch the contents of https://www.terriblytinytales.com/test.txt Parse the content and find the frequency of occurrence of each word (some words will occur only once, some twice and so on, and some will occur N times) Then on the frontend, plot a histogram of the 20 most occurring words. Also build an "Export" button, which when clicked will download a CSV file of the histogram data.
