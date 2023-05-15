@@ -1,70 +1,174 @@
-# Getting Started with Create React App
+# Supriti-Vats_Front-End
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### Supriti Vats | 12007319 | supritivats123@gmail.com |
 
-## Available Scripts
+## EXPLAINATION OF THE LIST COMPONENT:
+The React, useState, useEffect, memo, and useCallback are imported from the React library, and PropTypes is imported from the prop-types package.
 
-In the project directory, you can run:
+The WrappedSingleListItem component is defined, which is responsible for rendering a single item in the list. It receives four props: index, isSelected, onClickHandler, and text. It renders an li element with a background color based on whether the item is selected or not. It also invokes the onClickHandler prop when clicked, passing in the item's index.
 
-### `npm start`
+The SingleListItem component is a memoized version of the WrappedSingleListItem component, which means it will only re-render if its props change.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The WrappedListComponent component is defined, which is responsible for rendering the entire list. It receives one prop: items, an array of objects, each representing an item in the list. It initializes a state variable selectedIndex using the useState hook, which represents the currently selected item's index.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The handleClick function is defined using the useCallback hook, which updates the selectedIndex state variable when an item is clicked.
 
-### `npm test`
+The WrappedListComponent component renders an unordered list (ul) with each item in the items array rendered as a SingleListItem component. It passes in the necessary props to each SingleListItem component, including the isSelected prop, which is determined based on whether the item's index matches the selectedIndex.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The WrappedListComponent component is memoized using the memo function, which means it will only re-render if its props change.
 
-### `npm run build`
+Finally, the List component is defined as a memoized version of the WrappedListComponent component, which will only re-render if its props change. The List component is then exported as the default export of the module.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Total 6 Errors Found and Performed Optimization too
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### Error 1
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+In the WrappedListComponent component, useState was used incorrectly and initial value given [] after correction. [setSelectedIndex,selectedIndex] changes to [selectedIndex, setSelectedIndex] As during destructuring the the current state resides first and then a function that updates the state.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+incorrect one:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+const [setSelectedIndex,selectedIndex] = useState();
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+correct should be:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+const [selectedIndex, setSelectedIndex] = useState([]);
+```
 
-### Code Splitting
+### Error 2
+In the WrappedListComponent component, defaultProps for items should not be null. It should be:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+incorrect:
 
-### Analyzing the Bundle Size
+```
+items:null
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+correct: 
 
-### Making a Progressive Web App
+ ```
+items: [                    
+    {
+      id: 1,
+      text: "MY NAME IS",
+    },
+    {
+      id: 2,
+      text: "SUPRITI VATS",
+    },
+    {
+      id: 3,
+      text: "ANS I AM EXCITED TO JOIN YOUR ESTEEMED ORGANIZATION",
+    },
+    {
+      id: 4,
+      text: "STEELEYE",
+    },
+  ]
+ ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+### Error 3
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+In the SingleListItem component, the isSelected prop is currently receiving the state variable selectedIndex, which is an object generated by invoking the useState hook. However, the isSelected prop ought to hold a boolean value that indicates whether the item is selected or not. 
 
-### Deployment
+incorrect:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+isSelected={selectedIndex}
+```
 
-### `npm run build` fails to minify
+Therefore, it should be changed to:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+isSelected={selectedIndex === index}
+```
+
+### Error 4
+
+In the WrappedSingleListItem component, onClickHandler is being called with an argument (index). onClickHandler(index) changes to ()=>onClickHandler(index) because  to create a new function that will be executed later when the user clicks on the element, which will then invoke the onClickHandler function with the appropriate index argument.
+
+incorrect one:
+
+```
+onClick={onClickHandler(index)}
+
+```
+
+correct one:
+
+```
+onClick={()=>onClickHandler(index)}
+```
+
+
+### Error 5
+
+In the WrappedListComponent component, the propTypes for items is incorrectly defined. It sholud be arrayOf instead of array and shape instead of shapeOf
+
+Incorrect:
+
+```
+WrappedListComponent.propTypes = {
+  items: PropTypes.array(PropTypes.shapeOf({
+    text: PropTypes.string.isRequired,
+  })),
+};
+```
+
+
+correct:
+
+```
+WrappedListComponent.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      // ERROR  : Removing shapeOf to shape and array to arrayOf
+      text: PropTypes.string,
+    })
+  ),
+};
+```
+
+
+
+### Error 6
+
+Removing useEffect for no use
+
+```
+useEffect(() => {
+    setSelectedIndex(null);
+}, []);
+```
+
+We can remove the above code.
+
+ 
+# Code Output after removing the error
+
+![AFTER ERROR FIXING](https://user-images.githubusercontent.com/97901522/233856290-2670eb71-f586-4edc-a8fc-96707a0afd62.png)
+
+
+
+# Code Optimization
+
+#### Before Optimization of code the WrappedSingleListItem renders multiple times when we click on the list item
+
+![BEFORE OPTIMIZATION](https://user-images.githubusercontent.com/97901522/233856355-bf4ca13a-9ec7-4858-82b3-7fdbcaa698ea.png)
+
+
+
+#### After Optimization of code the WrappedSingleListItem renders only 2 times when we click on the list item
+
+![AFTER OPTMIZATION](https://user-images.githubusercontent.com/97901522/233856470-4b5e0420-8b48-407f-9288-2b6bfbdc0263.png)
+
+
+
+
