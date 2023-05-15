@@ -29,6 +29,16 @@ The React, useState and useEffect are imported from the React library
 chart.js/auto from Chart.js library, which is used for creating charts and graphs.
 papaparse is used for parsing and generating CSV files.
 
+### Commands to install chart.js:
+```
+ npm install chart.js 
+```
+
+### Commands to install papaparse:
+```
+ npm install papaparse 
+```
+ 
 ### Code Flow: 
 1. On first load, the interface only displays a "Submit" button.
 2. When the "Submit" button is clicked, it triggers the `doSubmit` function.
